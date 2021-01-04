@@ -10,11 +10,8 @@ class Game
   end
 
   def question
-    if $p1.turn
-      player = "Player 1"
-    else
-      player = "Player 2"
-    end
+
+    $p1.turn ? player = "Player 1" : player = "Player 2"
 
     first_num = rand(1..20)
     second_num = rand(1..20)
@@ -26,11 +23,8 @@ class Game
   end
 
   def make_guess
-    if $p1.turn
-      player = $p2
-    else
-      player = $p1
-    end
+
+    $p1.turn ? player = $p2 : player = $p1
 
     guess = gets.chomp
 
@@ -46,11 +40,7 @@ class Game
     $p1.set_turn
     $p2.set_turn
 
-    if $p1.score != 0 && $p2.score != 0
-      question
-    else
-      end_game
-    end
+    $p1.score != 0 && $p2.score != 0 ? question : end_game
   end
 
   def print_score
